@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+ 
+int main(void){
+  int i = 0;
+  int j = 0; 
+  int num = 0;
+  int bucket[25] = {0};
+  srand( (unsigned)time(NULL) );
+  printf("抽選を開始します。\r\n");
+ 
+  for(i = 0; i < 25; ){
+ 
+    num = rand() % 25;
+ 
+    if(bucket[num] == 0){
+      char ch = getc(stdin);
+      printf("%02dが出ました。\r\n", num);
+      bucket[num]++;
+      i++;
+     
+      for(j = 0; j < 25; j++){ 
+        if(bucket[j] == 0){ 
+          printf(" __ "); 
+        }else{ 
+          printf(" %2d ", j); 
+        }
+        if(j % 5 == 4){ 
+          printf("\n\r");
+        }
+      }
+      printf("\n\r");
+    }
+  }
+  printf("抽選を終了します。");
+  return 0;
+}
